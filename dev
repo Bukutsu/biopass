@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+set -eu
+
+target="${1:-build}"
+shift || true
+
+case "$target" in
+  build|install|test|clean)
+    exec make -f Makefile.local "$target" "$@"
+    ;;
+  *)
+    echo "usage: ./dev [build|install|test|clean]" >&2
+    exit 2
+    ;;
+esac
