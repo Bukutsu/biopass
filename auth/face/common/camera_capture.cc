@@ -286,6 +286,14 @@ class V4L2GreyCameraSession : public ICameraCaptureSession {
       return {};
     }
 
+    // Flush any stale frames that accumulated in the queue while the stream was idle
+    v4l2_buffer flush_buf {};
+    flush_buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+    flush_buf.memory = V4L2_MEMORY_MMAP;
+    while (::ioctl(fd_, VIDIOC_DQBUF, &flush_buf) == 0) {
+      ::ioctl(fd_, VIDIOC_QBUF, &flush_buf);
+    }
+
     const int total_frames_needed = warmup_frames_ + 1;
     int captured_frames = 0;
     const bool has_timeout = capture_timeout_ms_ > 0;
