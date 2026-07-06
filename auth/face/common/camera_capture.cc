@@ -26,7 +26,7 @@ namespace biopass {
 
 namespace {
 
-constexpr int kDefaultWarmupFrames = 5;
+constexpr int kDefaultWarmupFrames = 10;
 constexpr int kDefaultCaptureTimeoutMs = 10000;
 constexpr int kDefaultCapturePollIntervalMs = 10;
 

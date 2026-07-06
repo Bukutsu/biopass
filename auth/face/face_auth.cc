@@ -18,7 +18,7 @@ namespace biopass {
 
 namespace {
 
-constexpr int kIrCaptureWarmupFrames = 5;
+constexpr int kIrCaptureWarmupFrames = 10;
 constexpr int kIrCaptureTimeoutMs = 3000;
 constexpr int kIrCapturePollIntervalMs = 10;
 
